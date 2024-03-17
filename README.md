@@ -1,6 +1,6 @@
 # flutter_project
 
-A new Flutter project.
+A new Flutter project.This is a Diary App.
 
 ## Getting Started
 
