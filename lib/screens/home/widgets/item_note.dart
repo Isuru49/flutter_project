@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 
 class ItemNote extends StatelessWidget {
@@ -9,14 +11,34 @@ class ItemNote extends StatelessWidget {
       child: Row(
         children: [
           Container(
-            child: Column(
+            padding: const EdgeInsets.symmetric(horizontal: 20 , vertical: 5),
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(10),
+              color: Colors.red
+            ),
+            child:Column(
               children: [
-                Text('DEC'),
-                Text('02'),
-                Text('2023'),
+                Text(
+                    'DEC',
+                  style: const TextStyle(color: Colors.white70),
+                ),
+                const SizedBox(height: 3,),
+                Text(
+                    '02',
+                  style: Theme.of(context).textTheme.titleLarge?.copyWith(
+                    color: Colors.white,
+                    fontWeight: FontWeight.bold
+                  ),
+                ),
+                const SizedBox(height: 3,),
+                const Text(''
+                    '2023',
+                  style: TextStyle(color: Colors.white70),
+                ),
               ],
             ),
           ),
+
           Expanded(
               child: Column(
                 children: [
