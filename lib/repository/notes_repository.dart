@@ -32,17 +32,15 @@ class NotesRepository{
   static Future<List<Note>> getNotes() async {
     final db = await _database();
 
-    final List<Map<String, Object?>> noteMaps = await db.query(_tableName);
+    final List<Map<String, dynamic>> maps = await db.query(_tableName);
 
-    return [
-      for (final noteMap in noteMaps)
-        Note(
-          id: noteMap['id'] as int,
-          title: noteMap['title'] as String,
-          description: noteMap['description'] as String,
-          createdAt: DateTime.parse(noteMap['createdAt'] as String),
-        ),
-    ];
+    return List.generate(maps.length, (i) {
+      return Note(
+        id: maps[i]['id'] as int,
+        title: maps[i]['title'] as String,
+        description: maps[i]['description'] as String,
+        createdAt: DateTime.parse(maps[i]['createdAt'])
+      );
+    });
   }
-
 }

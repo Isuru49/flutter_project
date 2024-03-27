@@ -17,6 +17,12 @@ class _HomeScreenState extends State<HomeScreen> {
       appBar: AppBar(
         title: const Text("My Diary"),
         centerTitle: true,
+        actions: [
+          IconButton(
+              onPressed: () => setState(() {}),
+              icon: const Icon(Icons.refresh),
+          )
+        ],
       ),
       body: FutureBuilder(
         future: NotesRepository.getNotes(),
@@ -26,7 +32,7 @@ class _HomeScreenState extends State<HomeScreen> {
               return const Center(child: Text("Empty"));
             }
             return ListView(
-              padding: EdgeInsets.all(15),
+              padding: const EdgeInsets.all(15),
               children: [
                 for (var note in snapshot.data!)
                   ItemNote(note: note)

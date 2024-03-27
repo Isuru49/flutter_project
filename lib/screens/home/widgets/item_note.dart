@@ -2,6 +2,7 @@ import 'dart:ui';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
 import '../../../models/note.dart';
 
@@ -23,21 +24,21 @@ class ItemNote extends StatelessWidget {
             ),
             child:Column(
               children: [
-                const Text(
-                  'DEC',
+                Text(
+                  DateFormat(DateFormat.ABBR_MONTH).format(note.createdAt),
                   style: TextStyle(color: Colors.white70),
                 ),
                 const SizedBox(height: 3,),
                 Text(
-                  '02',
+                  DateFormat(DateFormat.DAY).format(note.createdAt),
                   style: Theme.of(context).textTheme.titleLarge?.copyWith(
                       color: Colors.white,
                       fontWeight: FontWeight.bold
                   ),
                 ),
                 const SizedBox(height: 3,),
-                const Text(
-                  '2023',
+                Text(
+                  note.createdAt.year.toString(),
                   style: TextStyle(color: Colors.white70),
                 ),
               ],
@@ -61,14 +62,14 @@ class ItemNote extends StatelessWidget {
                       ),
                     ),
                     Text(
-                      '12.30 PM',
+                      DateFormat(DateFormat.HOUR_MINUTE).format(note.createdAt),
                       style: Theme.of(context).textTheme.bodySmall,
                     )
                   ],
                 ),
                 Text(
                   note.description,
-                  style: TextStyle(
+                  style: const TextStyle(
                     fontWeight: FontWeight.w300,
                     height: 1.5,
                   ),
