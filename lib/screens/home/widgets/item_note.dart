@@ -1,5 +1,6 @@
 import 'dart:ui';
 
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class ItemNote extends StatelessWidget {
@@ -8,6 +9,7 @@ class ItemNote extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      margin: const EdgeInsets.symmetric(vertical: 10),
       child: Row(
         children: [
           Container(
@@ -18,9 +20,9 @@ class ItemNote extends StatelessWidget {
             ),
             child:Column(
               children: [
-                Text(
+                const Text(
                     'DEC',
-                  style: const TextStyle(color: Colors.white70),
+                  style: TextStyle(color: Colors.white70),
                 ),
                 const SizedBox(height: 3,),
                 Text(
@@ -31,21 +33,47 @@ class ItemNote extends StatelessWidget {
                   ),
                 ),
                 const SizedBox(height: 3,),
-                const Text(''
+                const Text(
                     '2023',
                   style: TextStyle(color: Colors.white70),
                 ),
               ],
             ),
           ),
-
+          const SizedBox(width: 15),
           Expanded(
-              child: Column(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text('This is the title'),
-                  Text('Here is the description of this note'),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Expanded(
+                        child: Text(
+                            'This is the title and also this is the theme nbddgdgdgdgdgdgd.',
+                        style: Theme.of(context).textTheme.titleMedium
+                            ?.copyWith(fontWeight: FontWeight.bold),
+                          maxLines: 1,
+                          overflow: TextOverflow.ellipsis,
+                        ),
+                      ),
+                      Text(
+                        '12.30 PM',
+                        style: Theme.of(context).textTheme.bodySmall,
+                      )
+                    ],
+                  ),
+                  const Text(
+                      'Here is the description of this note',
+                    style: TextStyle(
+                      fontWeight: FontWeight.w300,
+                      height: 1.5,
+                    ),
+                    maxLines: 3,
+                    overflow: TextOverflow.ellipsis,
+                  ),
                 ],
-              )
+              ),
           )
         ],
       ),
