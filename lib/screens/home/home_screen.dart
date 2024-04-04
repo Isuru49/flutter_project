@@ -19,8 +19,8 @@ class _HomeScreenState extends State<HomeScreen> {
         centerTitle: true,
         actions: [
           IconButton(
-              onPressed: () => setState(() {}),
-              icon: const Icon(Icons.refresh),
+            onPressed: () => setState(() {}),
+            icon: const Icon(Icons.refresh),
           )
         ],
       ),

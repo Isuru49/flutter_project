@@ -18,4 +18,6 @@ class Note{
     };
   }
 
+  copyWith({required String title, required String description}) {}
+
 }

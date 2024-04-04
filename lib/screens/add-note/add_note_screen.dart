@@ -1,10 +1,10 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_project/models/note.dart';
 import 'package:flutter_project/repository/notes_repository.dart';
 
 class AddNoteScreen extends StatefulWidget {
-  const AddNoteScreen({super.key});
+  final Note? note;
+  const AddNoteScreen({super.key, this.note});
 
   @override
   State<AddNoteScreen> createState() => _AddNoteScreenState();
@@ -13,6 +13,15 @@ class AddNoteScreen extends StatefulWidget {
 class _AddNoteScreenState extends State<AddNoteScreen> {
   final _title = TextEditingController();
   final _description = TextEditingController();
+
+  @override
+  void initState() {
+    if (widget.note != null) {
+      _title.text = widget.note!.title;
+      _description.text = widget.note!.description;
+    }
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
