@@ -29,10 +29,34 @@ class _AddNoteScreenState extends State<AddNoteScreen> {
         appBar: AppBar(
           title: const Text('Add note'),
           actions: [
+            widget.note != null? IconButton(
+              onPressed: () {
+                showDialog(context: context, builder: (context) => AlertDialog(
+                  content: const Text('Are you sure want to delete this note?'),
+                  actions: [
+                    TextButton(
+                      onPressed: () {
+                        Navigator.pop(context);
+                      },
+                      child: const Text('No'),
+                    ),
+                    TextButton(
+                      onPressed: () {
+                        Navigator.pop(context);
+                        _deleteNote();
+                      },
+                      child: const Text('Yes'),
+                    )
+                  ],
+                ));
+              },
+              icon: const Icon(Icons.delete_outline),
+            ): const SizedBox(),
             IconButton(
-              onPressed: _insertNote,
+              onPressed: widget.note == null? _insertNote: _updateNote,
               icon: const Icon(Icons.done),
-            )
+            ),
+
           ],
         ),
         body: Padding(
@@ -70,6 +94,22 @@ class _AddNoteScreenState extends State<AddNoteScreen> {
         createdAt: DateTime.now()
     );
     await NotesRepository.insert(note: note);
+  }
+
+  _updateNote() async {
+    final note  = Note(
+      id: widget.note!.id!,
+        title: _title.text,
+        description: _description.text,
+        createdAt: widget.note!.createdAt
+    );
+    await NotesRepository.update(note: note);
+  }
+
+  _deleteNote() async {
+    NotesRepository.delete(note: widget.note!).then((e) {
+      Navigator.pop(context);
+    });
   }
 
 }

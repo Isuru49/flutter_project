@@ -57,4 +57,18 @@ class NotesRepository {
     );
   }
 
+  static delete ({required Note note}) async {
+    final db = await _database();
+
+    // Remove the Dog from the database.
+    await db.delete(
+      _tableName,
+      // Use a `where` clause to delete a specific dog.
+      where: 'id = ?',
+      // Pass the Dog's id as a whereArg to prevent SQL injection.
+      whereArgs: [note.id],
+    );
+  }
+
+
 }
